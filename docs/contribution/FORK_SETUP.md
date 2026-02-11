@@ -24,7 +24,7 @@ The `setup-fork.sh` script automatically:
 1. **Detects** your GitHub username from git config
 2. **Updates ALL hardcoded links** to point to your fork:
    - Documentation links pointing to `community-scripts/ProxmoxVE`
-   - **Curl download URLs** in scripts (e.g., `curl ... github.com/community-scripts/ProxmoxVE/main/...`)
+   - **Curl download URLs** in scripts (e.g., `curl ... github.com/solectrus/ProxmoxVE/main/...`)
 3. **Creates** `.git-setup-info` with your configuration details
 4. **Backs up** all modified files (\*.backup for safety)
 
@@ -136,7 +136,7 @@ The script updates hardcoded links in these areas when using `--full`:
 
 ```bash
 # Add upstream if you haven't already
-git remote add upstream https://github.com/community-scripts/ProxmoxVE.git
+git remote add upstream https://github.com/solectrus/ProxmoxVE.git
 
 # Get latest from upstream
 git fetch upstream

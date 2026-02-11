@@ -177,9 +177,9 @@ npm install --no-save
 
 See working examples:
 
-- [Trip](https://github.com/community-scripts/ProxmoxVE/blob/main/install/trip-install.sh)
-- [Thingsboard](https://github.com/community-scripts/ProxmoxVE/blob/main/install/thingsboard-install.sh)
-- [UniFi](https://github.com/community-scripts/ProxmoxVE/blob/main/install/unifi-install.sh)
+- [Trip](https://github.com/solectrus/ProxmoxVE/blob/main/install/trip-install.sh)
+- [Thingsboard](https://github.com/solectrus/ProxmoxVE/blob/main/install/thingsboard-install.sh)
+- [UniFi](https://github.com/solectrus/ProxmoxVE/blob/main/install/unifi-install.sh)
 
 ---
 
@@ -200,7 +200,7 @@ Example:
 ```bash
 # Copyright (c) 2021-2026 community-scripts ORG
 # Author: [YourUserName]
-# License: MIT | https://github.com/community-scripts/ProxmoxVE/raw/main/LICENSE
+# License: MIT | https://github.com/solectrus/ProxmoxVE/raw/main/LICENSE
 # Source: [SOURCE_URL]
 ```
 

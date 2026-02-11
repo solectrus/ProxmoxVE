@@ -2,7 +2,7 @@
 
 # Copyright (c) 2021-2026 tteck
 # Author: MickLesk (CanbiZ)
-# License: MIT | https://github.com/community-scripts/ProxmoxVE/raw/main/LICENSE
+# License: MIT | https://github.com/solectrus/ProxmoxVE/raw/main/LICENSE
 # Source: https://github.com/seanmorley15/AdventureLog
 
 source /dev/stdin <<<"$FUNCTIONS_FILE_PATH"

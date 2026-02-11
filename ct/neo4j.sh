@@ -2,7 +2,7 @@
 source <(curl -fsSL https://raw.githubusercontent.com/community-scripts/ProxmoxVE/main/misc/build.func)
 # Copyright (c) 2021-2026 tteck
 # Author: tteck | Co-Author: havardthom
-# License: MIT | https://github.com/community-scripts/ProxmoxVE/raw/main/LICENSE
+# License: MIT | https://github.com/solectrus/ProxmoxVE/raw/main/LICENSE
 # Source: https://neo4j.com/product/neo4j-graph-database/
 
 APP="Neo4j"

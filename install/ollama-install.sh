@@ -2,7 +2,7 @@
 
 # Copyright (c) 2021-2026 tteck
 # Author: havardthom | Co-Author: MickLesk (CanbiZ)
-# License: MIT | https://github.com/community-scripts/ProxmoxVE/raw/main/LICENSE
+# License: MIT | https://github.com/solectrus/ProxmoxVE/raw/main/LICENSE
 # Source: https://ollama.com/
 
 source /dev/stdin <<<"$FUNCTIONS_FILE_PATH"

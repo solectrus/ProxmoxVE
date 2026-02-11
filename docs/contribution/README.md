@@ -23,7 +23,7 @@ When developing and testing **in your fork**:
 
 ```bash
 # 1. Fork on GitHub
-# Visit: https://github.com/community-scripts/ProxmoxVE → Fork (top right)
+# Visit: https://github.com/solectrus/ProxmoxVE → Fork (top right)
 
 # 2. Clone your fork
 git clone https://github.com/YOUR_USERNAME/ProxmoxVE.git
@@ -159,7 +159,7 @@ git config user.name "Your Name"
 git config user.email "your.email@example.com"
 
 # Add upstream remote for syncing with main repo
-git remote add upstream https://github.com/community-scripts/ProxmoxVE.git
+git remote add upstream https://github.com/solectrus/ProxmoxVE.git
 
 # Verify remotes
 git remote -v
@@ -644,9 +644,9 @@ See "Using AI Assistants" section above for:
 
 ## 📞 Contact & Support
 
-- **GitHub**: [community-scripts/ProxmoxVE](https://github.com/community-scripts/ProxmoxVE)
-- **Issues**: [GitHub Issues](https://github.com/community-scripts/ProxmoxVE/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/community-scripts/ProxmoxVE/discussions)
+- **GitHub**: [community-scripts/ProxmoxVE](https://github.com/solectrus/ProxmoxVE)
+- **Issues**: [GitHub Issues](https://github.com/solectrus/ProxmoxVE/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/solectrus/ProxmoxVE/discussions)
 - **Discord**: [Join Server](https://discord.gg/UHrpNWGwkH)
 
 ---

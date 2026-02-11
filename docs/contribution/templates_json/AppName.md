@@ -152,9 +152,9 @@ Each installation method specifies resource requirements:
 
 See actual examples in the repo:
 
-- [frontend/public/json/trip.json](https://github.com/community-scripts/ProxmoxVE/blob/main/frontend/public/json/trip.json)
-- [frontend/public/json/thingsboard.json](https://github.com/community-scripts/ProxmoxVE/blob/main/frontend/public/json/thingsboard.json)
-- [frontend/public/json/unifi.json](https://github.com/community-scripts/ProxmoxVE/blob/main/frontend/public/json/unifi.json)
+- [frontend/public/json/trip.json](https://github.com/solectrus/ProxmoxVE/blob/main/frontend/public/json/trip.json)
+- [frontend/public/json/thingsboard.json](https://github.com/solectrus/ProxmoxVE/blob/main/frontend/public/json/thingsboard.json)
+- [frontend/public/json/unifi.json](https://github.com/solectrus/ProxmoxVE/blob/main/frontend/public/json/unifi.json)
 
 ---
 

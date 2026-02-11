@@ -9,7 +9,7 @@
   "updateable": true,
   "privileged": false,
   "interface_port": 3000,
-  "documentation": "https://github.com/community-scripts/ProxmoxVE-Local",
+  "documentation": "https://github.com/solectrus/ProxmoxVE-Local",
   "config_path": "/opt/PVEScripts-Local/.env",
   "website": "https://community-scripts.github.io/ProxmoxVE",
   "logo": "https://raw.githubusercontent.com/community-scripts/ProxmoxVE-Local/refs/heads/main/.github/logo.png",

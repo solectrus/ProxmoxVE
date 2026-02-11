@@ -2,7 +2,7 @@
 
 # Copyright (c) 2021-2026 community-scripts ORG
 # Author: Dave-code-creater (Tan Dat, Ta)
-# License: MIT | https://github.com/community-scripts/ProxmoxVE/raw/main/LICENSE
+# License: MIT | https://github.com/solectrus/ProxmoxVE/raw/main/LICENSE
 # Source: https://jupyter.org/
 
 source /dev/stdin <<<"$FUNCTIONS_FILE_PATH"

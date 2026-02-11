@@ -3,7 +3,7 @@
 # Copyright (c) 2021-2026 tteck
 # Author: tteck (tteckster)
 # License: MIT
-# https://github.com/community-scripts/ProxmoxVE/raw/main/LICENSE
+# https://github.com/solectrus/ProxmoxVE/raw/main/LICENSE
 # Execute within the Proxmox shell
 # bash -c "$(curl -fsSL https://raw.githubusercontent.com/community-scripts/ProxmoxVE/main/tools/pve/hw-acceleration.sh)"
 
