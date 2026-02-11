@@ -160,9 +160,9 @@ See the [modern template](AppName.sh) and [AI.md](../AI.md) for complete working
 
 Recent reference scripts with good update functions:
 
-- [Trip](https://github.com/community-scripts/ProxmoxVE/blob/main/ct/trip.sh)
-- [Thingsboard](https://github.com/community-scripts/ProxmoxVE/blob/main/ct/thingsboard.sh)
-- [UniFi](https://github.com/community-scripts/ProxmoxVE/blob/main/ct/unifi.sh)
+- [Trip](https://github.com/solectrus/ProxmoxVE/blob/main/ct/trip.sh)
+- [Thingsboard](https://github.com/solectrus/ProxmoxVE/blob/main/ct/thingsboard.sh)
+- [UniFi](https://github.com/solectrus/ProxmoxVE/blob/main/ct/unifi.sh)
 
 ---
 

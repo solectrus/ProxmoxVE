@@ -9,7 +9,7 @@
     "updateable": true,
     "privileged": false,
     "interface_port": 5006,
-    "documentation": "https://github.com/community-scripts/ProxmoxVE/discussions/807",
+    "documentation": "https://github.com/solectrus/ProxmoxVE/discussions/807",
     "website": "https://actualbudget.org/",
     "config_path": "/opt/actualbudget-data/config.json",
     "logo": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/webp/actual-budget.webp",

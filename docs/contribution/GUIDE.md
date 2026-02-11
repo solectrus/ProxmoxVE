@@ -30,7 +30,7 @@
 
 ```bash
 # 1. Fork the repository on GitHub
-# Visit: https://github.com/community-scripts/ProxmoxVE
+# Visit: https://github.com/solectrus/ProxmoxVE
 # Click: Fork (top right)
 
 # 2. Clone your fork
@@ -177,7 +177,7 @@ Examples:
 
 ```bash
 # 1. Fork on GitHub (one-time)
-# Visit: https://github.com/community-scripts/ProxmoxVE
+# Visit: https://github.com/solectrus/ProxmoxVE
 # Click: Fork
 
 # 2. Clone your fork
@@ -185,7 +185,7 @@ git clone https://github.com/YOUR_USERNAME/ProxmoxVE.git
 cd ProxmoxVE
 
 # 3. Add upstream remote for updates
-git remote add upstream https://github.com/community-scripts/ProxmoxVE.git
+git remote add upstream https://github.com/solectrus/ProxmoxVE.git
 
 # 4. Create feature branch
 git checkout -b feat/add-myapp
@@ -575,7 +575,7 @@ fi
 # Copyright (c) 2021-2026 community-scripts ORG
 # Author: YourUsername
 # Co-Author: AnotherAuthor (for collaborative work)
-# License: MIT | https://github.com/community-scripts/ProxmoxVE/raw/main/LICENSE
+# License: MIT | https://github.com/solectrus/ProxmoxVE/raw/main/LICENSE
 # Source: https://github.com/app/repo
 # Description: Brief description of what this script does
 ```
@@ -768,7 +768,7 @@ git push origin feat/add-myapp --force-with-lease
 
 ### Step 3: Create Pull Request on GitHub
 
-**Visit**: https://github.com/community-scripts/ProxmoxVE/pulls
+**Visit**: https://github.com/solectrus/ProxmoxVE/pulls
 
 **Click**: "New Pull Request"
 
@@ -1002,8 +1002,8 @@ echo "Edit /opt/myapp/config.json to customize settings"
 - **Documentation**: `/docs` directory and wikis
 - **Function Reference**: `/misc/*.md` wiki files
 - **Examples**: Look at similar applications in `/ct` and `/install`
-- **GitHub Issues**: https://github.com/community-scripts/ProxmoxVE/issues
-- **Discussions**: https://github.com/community-scripts/ProxmoxVE/discussions
+- **GitHub Issues**: https://github.com/solectrus/ProxmoxVE/issues
+- **Discussions**: https://github.com/solectrus/ProxmoxVE/discussions
 
 ### Ask Questions
 

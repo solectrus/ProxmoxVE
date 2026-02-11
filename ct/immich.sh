@@ -2,7 +2,7 @@
 source <(curl -fsSL https://raw.githubusercontent.com/community-scripts/ProxmoxVE/main/misc/build.func)
 # Copyright (c) 2021-2026 community-scripts ORG
 # Author: vhsdream
-# License: MIT | https://github.com/community-scripts/ProxmoxVE/raw/main/LICENSE
+# License: MIT | https://github.com/solectrus/ProxmoxVE/raw/main/LICENSE
 # Source: https://immich.app
 
 APP="immich"
@@ -31,7 +31,7 @@ function update_script() {
   if [[ -f /etc/apt/sources.list.d/immich.list ]]; then
     msg_error "Wrong Debian version detected!"
     msg_error "You must upgrade your LXC to Debian Trixie before updating."
-    msg_error "Please visit https://github.com/community-scripts/ProxmoxVE/discussions/7726 for details."
+    msg_error "Please visit https://github.com/solectrus/ProxmoxVE/discussions/7726 for details."
     echo "${TAB3}  If you have upgraded your LXC to Trixie and you still see this message, please open an Issue in the Community-Scripts repo."
     exit
   fi

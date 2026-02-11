@@ -37,7 +37,7 @@
       "type": "info"
     },
     {
-     "text": "For additional Debian commands and tips after installation, checkout: `https://github.com/community-scripts/ProxmoxVE/discussions/836`",
+     "text": "For additional Debian commands and tips after installation, checkout: `https://github.com/solectrus/ProxmoxVE/discussions/836`",
       "type": "info"
     }
   ]

@@ -35,7 +35,7 @@ We do **NOT use Docker** for our installation scripts. All applications are inst
 source <(curl -fsSL https://raw.githubusercontent.com/community-scripts/ProxmoxVE/main/misc/build.func)
 # Copyright (c) 2021-2026 community-scripts ORG
 # Author: AuthorName (GitHubUsername)
-# License: MIT | https://github.com/community-scripts/ProxmoxVE/raw/main/LICENSE
+# License: MIT | https://github.com/solectrus/ProxmoxVE/raw/main/LICENSE
 # Source: https://application-url.com
 
 APP="AppName"
@@ -105,7 +105,7 @@ echo -e "${TAB}${GATEWAY}${BGN}http://${IP}:PORT${CL}"
 
 # Copyright (c) 2021-2026 community-scripts ORG
 # Author: AuthorName (GitHubUsername)
-# License: MIT | https://github.com/community-scripts/ProxmoxVE/raw/main/LICENSE
+# License: MIT | https://github.com/solectrus/ProxmoxVE/raw/main/LICENSE
 # Source: https://application-url.com
 
 source /dev/stdin <<<"$FUNCTIONS_FILE_PATH"

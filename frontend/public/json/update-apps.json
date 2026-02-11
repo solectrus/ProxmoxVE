@@ -9,7 +9,7 @@
   "updateable": true,
   "privileged": false,
   "interface_port": null,
-  "documentation": "https://github.com/community-scripts/ProxmoxVE/discussions/11532",
+  "documentation": "https://github.com/solectrus/ProxmoxVE/discussions/11532",
   "website": null,
   "logo": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/webp/proxmox.webp",
   "config_path": "",
@@ -37,7 +37,7 @@
       "type": "info"
     },
     {
-      "text": "Full Guide can be found here: `https://github.com/community-scripts/ProxmoxVE/discussions/11532`",
+      "text": "Full Guide can be found here: `https://github.com/solectrus/ProxmoxVE/discussions/11532`",
       "type": "info"
     },
     {

@@ -9,7 +9,7 @@
   "updateable": false,
   "privileged": false,
   "interface_port": null,
-  "documentation": "https://github.com/community-scripts/ProxmoxVE/discussions/805",
+  "documentation": "https://github.com/solectrus/ProxmoxVE/discussions/805",
   "website": null,
   "logo": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/webp/linuxcontainers.webp",
   "config_path": "",

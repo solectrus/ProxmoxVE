@@ -572,7 +572,7 @@ prepare_repository_setup "mariadb" "mysql"
 
 # Copyright (c) 2021-2026 community-scripts ORG
 # Author: YourUsername
-# License: MIT | https://github.com/community-scripts/ProxmoxVE/raw/main/LICENSE
+# License: MIT | https://github.com/solectrus/ProxmoxVE/raw/main/LICENSE
 # Source: https://github.com/example/myapp
 
 source /dev/stdin <<<"$FUNCTIONS_FILE_PATH"
@@ -639,7 +639,7 @@ cleanup_lxc
 source <(curl -fsSL https://raw.githubusercontent.com/community-scripts/ProxmoxVE/main/misc/build.func)
 # Copyright (c) 2021-2026 community-scripts ORG
 # Author: YourUsername
-# License: MIT | https://github.com/community-scripts/ProxmoxVE/raw/main/LICENSE
+# License: MIT | https://github.com/solectrus/ProxmoxVE/raw/main/LICENSE
 # Source: https://github.com/example/myapp
 
 APP="MyApp"

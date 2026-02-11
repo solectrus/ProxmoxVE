@@ -1,6 +1,6 @@
 # Copyright (c) 2021-2026 community-scripts ORG
 # Author: michelroegl-brunner
-# License: MIT | https://raw.githubusercontent.com/community-scripts/ProxmoxVE/main/LICENSE
+# License: MIT | https://raw.githubusercontent.com/solectrus/ProxmoxVE/main/LICENSE
 
 # ==============================================================================
 # API.FUNC - TELEMETRY & DIAGNOSTICS API
@@ -119,7 +119,7 @@ explain_exit_code() {
   222) echo "Custom: Template download failed after 3 attempts (network/storage issue)" ;;
   223) echo "Custom: Template not available after download (storage sync issue)" ;;
   225) echo "Custom: No template available for OS/Version (check 'pveam available')" ;;
-  231) echo "Custom: LXC stack upgrade/retry failed (outdated pve-container - check https://github.com/community-scripts/ProxmoxVE/discussions/8126)" ;;
+  231) echo "Custom: LXC stack upgrade/retry failed (outdated pve-container - check https://github.com/solectrus/ProxmoxVE/discussions/8126)" ;;
 
   # --- Default ---
   *) echo "Unknown error" ;;

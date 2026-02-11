@@ -78,7 +78,7 @@ A comprehensive, user-friendly interface built with Next.js that provides access
 1. **Clone the repository**
 
    ```bash
-   git clone https://github.com/community-scripts/ProxmoxVE.git
+   git clone https://github.com/solectrus/ProxmoxVE.git
    cd ProxmoxVE/frontend
    ```
 
@@ -266,15 +266,15 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 📚 Additional Resources
 
 - **[Proxmox VE Documentation](https://pve.proxmox.com/pve-docs/)**
-- **[Community Scripts Repository](https://github.com/community-scripts/ProxmoxVE)**
+- **[Community Scripts Repository](https://github.com/solectrus/ProxmoxVE)**
 - **[Discord Community](https://discord.gg/3AnUqsXnmK)**
-- **[GitHub Discussions](https://github.com/community-scripts/ProxmoxVE/discussions)**
+- **[GitHub Discussions](https://github.com/solectrus/ProxmoxVE/discussions)**
 
 ## 🔗 Links
 
 - **🌐 Live Website**: [https://community-scripts.github.io/ProxmoxVE/](https://community-scripts.github.io/ProxmoxVE/)
 - **💬 Discord Server**: [https://discord.gg/3AnUqsXnmK](https://discord.gg/3AnUqsXnmK)
-- **📝 Change Log**: [https://github.com/community-scripts/ProxmoxVE/blob/main/CHANGELOG.md](https://github.com/community-scripts/ProxmoxVE/blob/main/CHANGELOG.md)
+- **📝 Change Log**: [https://github.com/solectrus/ProxmoxVE/blob/main/CHANGELOG.md](https://github.com/solectrus/ProxmoxVE/blob/main/CHANGELOG.md)
 
 ---
 

@@ -3,7 +3,7 @@
 # Copyright (c) 2021-2026 tteck
 # Author: tteck (tteckster)
 # License: MIT
-# https://github.com/community-scripts/ProxmoxVE/raw/main/LICENSE
+# https://github.com/solectrus/ProxmoxVE/raw/main/LICENSE
 
 # Use to copy all data from one Home Assistant LXC to another
 # run from the Proxmox Shell
