@@ -87,7 +87,7 @@ $STD docker compose up -d influxdb
 until curl -sf http://localhost:8086/ping >/dev/null 2>&1; do sleep 2; done
 msg_ok "Started InfluxDB"
 
-msg_info "Creating InfluxDB read-only token"
+msg_info "Creating InfluxDB tokens"
 ORG_ID=$(curl -sf http://localhost:8086/api/v2/orgs \
   -H "Authorization: Token ${INFLUX_ADMIN_TOKEN}" | jq -r '.orgs[0].id')
 if [[ -z "$ORG_ID" || "$ORG_ID" == "null" ]]; then
@@ -105,8 +105,19 @@ if [[ -z "$INFLUX_READ_TOKEN" || "$INFLUX_READ_TOKEN" == "null" ]]; then
   exit 1
 fi
 
+INFLUX_WRITE_TOKEN=$(curl -sf http://localhost:8086/api/v2/authorizations \
+  -H "Authorization: Token ${INFLUX_ADMIN_TOKEN}" \
+  -H "Content-Type: application/json" \
+  -d "{\"description\":\"SOLECTRUS write\",\"orgID\":\"${ORG_ID}\",\"permissions\":[{\"action\":\"write\",\"resource\":{\"type\":\"buckets\",\"orgID\":\"${ORG_ID}\"}}]}" \
+  | jq -r '.token')
+if [[ -z "$INFLUX_WRITE_TOKEN" || "$INFLUX_WRITE_TOKEN" == "null" ]]; then
+  msg_error "Failed to create InfluxDB write token"
+  exit 1
+fi
+
 sed -i "s|^INFLUX_TOKEN_READ=.*|INFLUX_TOKEN_READ=${INFLUX_READ_TOKEN}|" .env
-msg_ok "Created InfluxDB read-only token"
+sed -i "s|^INFLUX_TOKEN_WRITE=.*|INFLUX_TOKEN_WRITE=${INFLUX_WRITE_TOKEN}|" .env
+msg_ok "Created InfluxDB tokens"
 
 # -- Start all services --------------------------------------------------------
 msg_info "Starting SOLECTRUS"
@@ -123,6 +134,7 @@ msg_ok "Started SOLECTRUS"
   echo "InfluxDB Password: ${INFLUX_PW}"
   echo "InfluxDB Admin Token: ${INFLUX_ADMIN_TOKEN}"
   echo "InfluxDB Read Token:  ${INFLUX_READ_TOKEN}"
+  echo "InfluxDB Write Token: ${INFLUX_WRITE_TOKEN}"
 } > ~/solectrus.creds
 
 # -- Finalize ------------------------------------------------------------------
