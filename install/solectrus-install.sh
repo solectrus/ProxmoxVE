@@ -10,6 +10,7 @@ source /dev/stdin <<<"$FUNCTIONS_FILE_PATH"
 SOLECTRUS_URL="https://raw.githubusercontent.com/solectrus/solectrus/refs/heads/develop"
 INSTALL_DIR="/opt/solectrus"
 
+# -- Base system ---------------------------------------------------------------
 color
 verb_ip6
 catch_errors
@@ -17,6 +18,7 @@ setting_up_container
 network_check
 update_os
 
+# -- Docker --------------------------------------------------------------------
 msg_info "Setup Docker Repository"
 setup_deb822_repo \
   "docker" \
@@ -38,18 +40,22 @@ msg_ok "Installed Docker"
 
 msg_info "Configuring Docker"
 mkdir -p /etc/docker
+
+# Use journald for container logs to prevent unbounded disk usage
 echo -e '{\n  "log-driver": "journald"\n}' >/etc/docker/daemon.json
+
 systemctl restart docker
 msg_ok "Configured Docker"
 
+# -- SOLECTRUS setup -----------------------------------------------------------
 msg_info "Setup SOLECTRUS"
 mkdir -p "$INSTALL_DIR"
 
-# Download compose.yaml and .env from upstream
+# Fetch compose.yaml and .env template from upstream repository
 curl -fsSL "${SOLECTRUS_URL}/compose.yaml" -o "${INSTALL_DIR}/compose.yaml"
 curl -fsSL "${SOLECTRUS_URL}/.env.example" -o "${INSTALL_DIR}/.env"
 
-# Generate credentials
+# Generate random credentials for all services
 cd "$INSTALL_DIR"
 POSTGRES_PW=$(openssl rand -base64 24 | tr -d '/+=')
 INFLUX_PW=$(openssl rand -base64 24 | tr -d '/+=')
@@ -58,6 +64,7 @@ SECRET_KEY=$(openssl rand -hex 64)
 ADMIN_PW=$(openssl rand -base64 12 | tr -d '/+=')
 CT_IP=$(hostname -I | awk '{print $1}')
 
+# Replace default values in .env with generated credentials and absolute paths
 sed -i \
   -e "s|^DB_VOLUME_PATH=.*|DB_VOLUME_PATH=${INSTALL_DIR}/postgresql|" \
   -e "s|^INFLUX_VOLUME_PATH=.*|INFLUX_VOLUME_PATH=${INSTALL_DIR}/influxdb|" \
@@ -72,12 +79,14 @@ sed -i \
 
 msg_ok "Setup SOLECTRUS"
 
+# -- InfluxDB read-only token --------------------------------------------------
+# Start InfluxDB first so we can create a dedicated read-only token via its API.
+# This avoids reusing the admin token for the dashboard (least-privilege).
 msg_info "Starting InfluxDB"
 $STD docker compose up -d influxdb
 until curl -sf http://localhost:8086/ping >/dev/null 2>&1; do sleep 2; done
 msg_ok "Started InfluxDB"
 
-# Create read-only token via InfluxDB API
 msg_info "Creating InfluxDB read-only token"
 ORG_ID=$(curl -sf http://localhost:8086/api/v2/orgs \
   -H "Authorization: Token ${INFLUX_ADMIN_TOKEN}" | jq -r '.orgs[0].id')
@@ -89,11 +98,13 @@ INFLUX_READ_TOKEN=$(curl -sf http://localhost:8086/api/v2/authorizations \
 sed -i "s|^INFLUX_TOKEN_READ=.*|INFLUX_TOKEN_READ=${INFLUX_READ_TOKEN}|" .env
 msg_ok "Created InfluxDB read-only token"
 
+# -- Start all services --------------------------------------------------------
 msg_info "Starting SOLECTRUS"
 $STD docker compose up -d
 msg_ok "Started SOLECTRUS"
 
-# Save credentials
+# -- Credentials file ----------------------------------------------------------
+# Store all generated credentials for later reference
 cat > "${INSTALL_DIR}/.credentials" <<CREDS
 SOLECTRUS Credentials (generated $(date +%Y-%m-%d))
 ====================================================
@@ -107,6 +118,7 @@ InfluxDB Read Token:  ${INFLUX_READ_TOKEN}
 CREDS
 chmod 600 "${INSTALL_DIR}/.credentials"
 
+# -- Finalize ------------------------------------------------------------------
 motd_ssh
 customize
 cleanup_lxc

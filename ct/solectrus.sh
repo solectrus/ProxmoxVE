@@ -5,6 +5,7 @@ source <(curl -fsSL https://raw.githubusercontent.com/solectrus/ProxmoxVE/main/m
 # License: MIT | https://github.com/solectrus/ProxmoxVE/raw/main/LICENSE
 # Source: https://github.com/solectrus/solectrus
 
+# -- Default container settings -----------------------------------------------
 APP="SOLECTRUS"
 var_tags="${var_tags:-docker}"
 var_cpu="${var_cpu:-2}"
@@ -14,11 +15,13 @@ var_os="${var_os:-debian}"
 var_version="${var_version:-13}"
 var_unprivileged="${var_unprivileged:-1}"
 
+# -- Initialization ------------------------------------------------------------
 header_info "$APP"
 variables
 color
 catch_errors
 
+# -- Update (called when container already exists) -----------------------------
 function update_script() {
   header_info
   check_container_storage
@@ -29,6 +32,7 @@ function update_script() {
     exit 1
   }
 
+  # Pull latest images and restart all services
   msg_info "Updating SOLECTRUS"
   cd /opt/solectrus
   $STD docker compose pull
@@ -37,6 +41,7 @@ function update_script() {
   exit
 }
 
+# -- First-time installation ---------------------------------------------------
 start
 build_container
 description
