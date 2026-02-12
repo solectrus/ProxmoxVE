@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Copyright (c) 2021-2026 community-scripts ORG
+# Copyright (c) 2026 Georg Ledermann
 # Author: Georg Ledermann
 # License: MIT | https://github.com/solectrus/ProxmoxVE/raw/main/LICENSE
 # Source: https://github.com/solectrus/solectrus
@@ -90,11 +90,21 @@ msg_ok "Started InfluxDB"
 msg_info "Creating InfluxDB read-only token"
 ORG_ID=$(curl -sf http://localhost:8086/api/v2/orgs \
   -H "Authorization: Token ${INFLUX_ADMIN_TOKEN}" | jq -r '.orgs[0].id')
+if [[ -z "$ORG_ID" || "$ORG_ID" == "null" ]]; then
+  msg_error "Failed to retrieve InfluxDB organization ID"
+  exit 1
+fi
+
 INFLUX_READ_TOKEN=$(curl -sf http://localhost:8086/api/v2/authorizations \
   -H "Authorization: Token ${INFLUX_ADMIN_TOKEN}" \
   -H "Content-Type: application/json" \
   -d "{\"description\":\"SOLECTRUS read-only\",\"orgID\":\"${ORG_ID}\",\"permissions\":[{\"action\":\"read\",\"resource\":{\"type\":\"buckets\",\"orgID\":\"${ORG_ID}\"}}]}" \
   | jq -r '.token')
+if [[ -z "$INFLUX_READ_TOKEN" || "$INFLUX_READ_TOKEN" == "null" ]]; then
+  msg_error "Failed to create InfluxDB read-only token"
+  exit 1
+fi
+
 sed -i "s|^INFLUX_TOKEN_READ=.*|INFLUX_TOKEN_READ=${INFLUX_READ_TOKEN}|" .env
 msg_ok "Created InfluxDB read-only token"
 
@@ -113,7 +123,7 @@ msg_ok "Started SOLECTRUS"
   echo "InfluxDB Password: ${INFLUX_PW}"
   echo "InfluxDB Admin Token: ${INFLUX_ADMIN_TOKEN}"
   echo "InfluxDB Read Token:  ${INFLUX_READ_TOKEN}"
-} >> ~/solectrus.creds
+} > ~/solectrus.creds
 
 # -- Finalize ------------------------------------------------------------------
 motd_ssh
