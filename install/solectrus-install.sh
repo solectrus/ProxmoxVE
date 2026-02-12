@@ -53,7 +53,7 @@ curl -fsSL "${SOLECTRUS_URL}/.env.example" -o "${INSTALL_DIR}/.env"
 cd "$INSTALL_DIR"
 POSTGRES_PW=$(openssl rand -base64 24 | tr -d '/+=')
 INFLUX_PW=$(openssl rand -base64 24 | tr -d '/+=')
-INFLUX_TOKEN=$(openssl rand -base64 48 | tr -d '/+=')
+INFLUX_ADMIN_TOKEN=$(openssl rand -base64 48 | tr -d '/+=')
 SECRET_KEY=$(openssl rand -hex 64)
 ADMIN_PW=$(openssl rand -base64 12 | tr -d '/+=')
 CT_IP=$(hostname -I | awk '{print $1}')
@@ -64,30 +64,48 @@ sed -i \
   -e "s|^REDIS_VOLUME_PATH=.*|REDIS_VOLUME_PATH=${INSTALL_DIR}/redis|" \
   -e "s|^POSTGRES_PASSWORD=.*|POSTGRES_PASSWORD=${POSTGRES_PW}|" \
   -e "s|^INFLUX_PASSWORD=.*|INFLUX_PASSWORD=${INFLUX_PW}|" \
-  -e "s|^INFLUX_ADMIN_TOKEN=.*|INFLUX_ADMIN_TOKEN=${INFLUX_TOKEN}|" \
-  -e "s|^INFLUX_TOKEN_READ=.*|INFLUX_TOKEN_READ=${INFLUX_TOKEN}|" \
+  -e "s|^INFLUX_ADMIN_TOKEN=.*|INFLUX_ADMIN_TOKEN=${INFLUX_ADMIN_TOKEN}|" \
   -e "s|^SECRET_KEY_BASE=.*|SECRET_KEY_BASE=${SECRET_KEY}|" \
   -e "s|^ADMIN_PASSWORD=.*|ADMIN_PASSWORD=${ADMIN_PW}|" \
   -e "s|^APP_HOST=.*|APP_HOST=${CT_IP}|" \
   .env
 
-# Save credentials
-cat > "${INSTALL_DIR}/.credentials" <<CREDS
-SOLECTRUS Credentials (generated $(date +%Y-%m-%d))
-====================================================
-Dashboard URL:     http://${CT_IP}
-Admin Password:    ${ADMIN_PW}
-Postgres Password: ${POSTGRES_PW}
-InfluxDB Password: ${INFLUX_PW}
-InfluxDB Token:    ${INFLUX_TOKEN}
-====================================================
-CREDS
-chmod 600 "${INSTALL_DIR}/.credentials"
 msg_ok "Setup SOLECTRUS"
+
+msg_info "Starting InfluxDB"
+$STD docker compose up -d influxdb
+until curl -sf http://localhost:8086/ping >/dev/null 2>&1; do sleep 2; done
+msg_ok "Started InfluxDB"
+
+# Create read-only token via InfluxDB API
+msg_info "Creating InfluxDB read-only token"
+ORG_ID=$(curl -sf http://localhost:8086/api/v2/orgs \
+  -H "Authorization: Token ${INFLUX_ADMIN_TOKEN}" | jq -r '.orgs[0].id')
+INFLUX_READ_TOKEN=$(curl -sf http://localhost:8086/api/v2/authorizations \
+  -H "Authorization: Token ${INFLUX_ADMIN_TOKEN}" \
+  -H "Content-Type: application/json" \
+  -d "{\"description\":\"SOLECTRUS read-only\",\"orgID\":\"${ORG_ID}\",\"permissions\":[{\"action\":\"read\",\"resource\":{\"type\":\"buckets\",\"orgID\":\"${ORG_ID}\"}}]}" \
+  | jq -r '.token')
+sed -i "s|^INFLUX_TOKEN_READ=.*|INFLUX_TOKEN_READ=${INFLUX_READ_TOKEN}|" .env
+msg_ok "Created InfluxDB read-only token"
 
 msg_info "Starting SOLECTRUS"
 $STD docker compose up -d
 msg_ok "Started SOLECTRUS"
+
+# Save credentials
+cat > "${INSTALL_DIR}/.credentials" <<CREDS
+SOLECTRUS Credentials (generated $(date +%Y-%m-%d))
+====================================================
+Dashboard URL:     http://${CT_IP}:3000
+Admin Password:    ${ADMIN_PW}
+Postgres Password: ${POSTGRES_PW}
+InfluxDB Password: ${INFLUX_PW}
+InfluxDB Admin Token: ${INFLUX_ADMIN_TOKEN}
+InfluxDB Read Token:  ${INFLUX_READ_TOKEN}
+====================================================
+CREDS
+chmod 600 "${INSTALL_DIR}/.credentials"
 
 motd_ssh
 customize
