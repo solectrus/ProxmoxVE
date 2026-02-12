@@ -103,20 +103,17 @@ msg_info "Starting SOLECTRUS"
 $STD docker compose up -d
 msg_ok "Started SOLECTRUS"
 
-# -- Credentials file ----------------------------------------------------------
-# Store all generated credentials for later reference
-cat > "${INSTALL_DIR}/.credentials" <<CREDS
-SOLECTRUS Credentials (generated $(date +%Y-%m-%d))
-====================================================
-Dashboard URL:     http://${CT_IP}:3000
-Admin Password:    ${ADMIN_PW}
-Postgres Password: ${POSTGRES_PW}
-InfluxDB Password: ${INFLUX_PW}
-InfluxDB Admin Token: ${INFLUX_ADMIN_TOKEN}
-InfluxDB Read Token:  ${INFLUX_READ_TOKEN}
-====================================================
-CREDS
-chmod 600 "${INSTALL_DIR}/.credentials"
+# -- Credentials ---------------------------------------------------------------
+# Store generated credentials for later reference (convention: ~/app.creds)
+{
+  echo "SOLECTRUS Credentials"
+  echo "Dashboard URL:     http://${CT_IP}:3000"
+  echo "Admin Password:    ${ADMIN_PW}"
+  echo "Postgres Password: ${POSTGRES_PW}"
+  echo "InfluxDB Password: ${INFLUX_PW}"
+  echo "InfluxDB Admin Token: ${INFLUX_ADMIN_TOKEN}"
+  echo "InfluxDB Read Token:  ${INFLUX_READ_TOKEN}"
+} >> ~/solectrus.creds
 
 # -- Finalize ------------------------------------------------------------------
 motd_ssh
