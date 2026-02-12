@@ -27,17 +27,21 @@ function update_script() {
   check_container_storage
   check_container_resources
 
-  [[ -d /opt/solectrus ]] || {
+  if [[ ! -d /opt/solectrus ]]; then
     msg_error "No ${APP} Installation Found!"
-    exit 1
-  }
+    exit
+  fi
 
-  # Pull latest images and restart all services
-  msg_info "Updating SOLECTRUS"
-  cd /opt/solectrus
+  msg_info "Updating OS"
+  $STD apt-get update
+  $STD apt-get -y upgrade
+  msg_ok "Updated OS"
+
+  msg_info "Updating ${APP}"
+  cd /opt/solectrus || exit
   $STD docker compose pull
   $STD docker compose up -d
-  msg_ok "Updated SOLECTRUS"
+  msg_ok "Updated ${APP}"
   exit
 }
 
