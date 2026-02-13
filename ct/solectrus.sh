@@ -41,6 +41,7 @@ function update_script() {
   cd /opt/solectrus || exit
   $STD docker compose pull
   $STD docker compose up -d
+  $STD docker image prune -af
   msg_ok "Updated ${APP}"
   exit
 }
