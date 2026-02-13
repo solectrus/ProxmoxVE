@@ -7,7 +7,7 @@ source <(curl -fsSL https://raw.githubusercontent.com/solectrus/ProxmoxVE/main/m
 
 # -- Default container settings -----------------------------------------------
 APP="SOLECTRUS"
-var_tags="${var_tags:-docker}"
+var_tags="${var_tags:-smarthome;dashboard}"
 var_cpu="${var_cpu:-2}"
 var_ram="${var_ram:-2048}"
 var_disk="${var_disk:-16}"
