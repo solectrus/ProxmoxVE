@@ -1,0 +1,42 @@
+{
+  "name": "SOLECTRUS",
+  "slug": "solectrus",
+  "categories": [16, 10],
+  "date_created": "2026-02-12",
+  "type": "ct",
+  "updateable": true,
+  "privileged": false,
+  "interface_port": 3000,
+  "documentation": "https://docs.solectrus.de/",
+  "website": "https://solectrus.de/",
+  "logo": "https://solectrus.de/logo.png",
+  "config_path": "/opt/solectrus/.env",
+  "description": "SOLECTRUS is a photovoltaic dashboard that visualizes solar energy production, consumption, and battery storage data. It runs as a Docker-based stack with InfluxDB, PostgreSQL, and Redis, providing real-time monitoring and historical analysis of your solar power system.",
+  "install_methods": [
+    {
+      "type": "default",
+      "script": "ct/solectrus.sh",
+      "resources": {
+        "cpu": 2,
+        "ram": 2048,
+        "hdd": 16,
+        "os": "debian",
+        "version": "13"
+      }
+    }
+  ],
+  "default_credentials": {
+    "username": null,
+    "password": null
+  },
+  "notes": [
+    {
+      "text": "Credentials are stored in `~/solectrus.creds` inside the container.",
+      "type": "info"
+    },
+    {
+      "text": "Requires a data source such as Home Assistant or ioBroker to feed solar data into InfluxDB.",
+      "type": "warning"
+    }
+  ]
+}
