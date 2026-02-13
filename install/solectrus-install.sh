@@ -52,8 +52,14 @@ msg_info "Setup SOLECTRUS"
 mkdir -p "$INSTALL_DIR"
 
 # Fetch compose.yaml and .env template from upstream repository
-curl -fsSL "${SOLECTRUS_URL}/compose.yaml" -o "${INSTALL_DIR}/compose.yaml"
-curl -fsSL "${SOLECTRUS_URL}/.env.example" -o "${INSTALL_DIR}/.env"
+curl -fsSL "${SOLECTRUS_URL}/compose.yaml" -o "${INSTALL_DIR}/compose.yaml" || {
+  msg_error "Failed to download compose.yaml"
+  exit 1
+}
+curl -fsSL "${SOLECTRUS_URL}/.env.example" -o "${INSTALL_DIR}/.env" || {
+  msg_error "Failed to download .env.example"
+  exit 1
+}
 
 # Generate random credentials for all services
 cd "$INSTALL_DIR"
