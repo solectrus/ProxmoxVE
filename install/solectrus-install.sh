@@ -90,7 +90,14 @@ msg_ok "Setup SOLECTRUS"
 # This avoids reusing the admin token for the dashboard (least-privilege).
 msg_info "Starting InfluxDB"
 $STD docker compose up -d influxdb
-until curl -sf http://localhost:8086/ping >/dev/null 2>&1; do sleep 2; done
+for i in {1..30}; do
+  curl -sf http://localhost:8086/ping >/dev/null 2>&1 && break
+  sleep 2
+done
+if ! curl -sf http://localhost:8086/ping >/dev/null 2>&1; then
+  msg_error "InfluxDB failed to start within 60 seconds"
+  exit 1
+fi
 msg_ok "Started InfluxDB"
 
 msg_info "Creating InfluxDB tokens"
