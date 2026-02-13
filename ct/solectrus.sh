@@ -39,8 +39,8 @@ function update_script() {
 
   msg_info "Updating ${APP}"
   cd /opt/solectrus || exit
-  $STD docker compose pull
-  $STD docker compose up -d
+  $STD docker compose pull || { msg_error "Failed to pull images"; exit 1; }
+  $STD docker compose up -d --remove-orphans || { msg_error "Failed to start services"; exit 1; }
   $STD docker image prune -af
   msg_ok "Updated ${APP}"
   exit
