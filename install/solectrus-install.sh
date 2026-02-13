@@ -136,6 +136,7 @@ msg_ok "Started SOLECTRUS"
   echo "InfluxDB Read Token:  ${INFLUX_READ_TOKEN}"
   echo "InfluxDB Write Token: ${INFLUX_WRITE_TOKEN}"
 } > ~/solectrus.creds
+chmod 600 ~/solectrus.creds
 
 # -- Finalize ------------------------------------------------------------------
 motd_ssh
