@@ -30,21 +30,15 @@ setup_deb822_repo \
 msg_ok "Setup Docker Repository"
 
 msg_info "Installing Docker"
+# Use journald for container logs to prevent unbounded disk usage
+mkdir -p /etc/docker
+echo -e '{\n  "log-driver": "journald"\n}' >/etc/docker/daemon.json
 $STD apt-get install -y \
   docker-ce \
   docker-ce-cli \
   containerd.io \
   docker-compose-plugin
 msg_ok "Installed Docker"
-
-msg_info "Configuring Docker"
-mkdir -p /etc/docker
-
-# Use journald for container logs to prevent unbounded disk usage
-echo -e '{\n  "log-driver": "journald"\n}' >/etc/docker/daemon.json
-
-systemctl restart docker || { msg_error "Failed to restart Docker"; exit 1; }
-msg_ok "Configured Docker"
 
 # -- SOLECTRUS setup -----------------------------------------------------------
 msg_info "Setup SOLECTRUS"
