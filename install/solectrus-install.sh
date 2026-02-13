@@ -83,6 +83,14 @@ sed -i \
   -e "s|^APP_HOST=.*|APP_HOST=${CT_IP}|" \
   .env
 
+# Verify that all critical variables were replaced
+for var in POSTGRES_PASSWORD INFLUX_PASSWORD INFLUX_ADMIN_TOKEN SECRET_KEY_BASE ADMIN_PASSWORD APP_HOST; do
+  if ! grep -q "^${var}=.\+" .env; then
+    msg_error "Failed to set ${var} in .env (variable not found in template)"
+    exit 1
+  fi
+done
+
 msg_ok "Setup SOLECTRUS"
 
 # -- InfluxDB read-only token --------------------------------------------------
