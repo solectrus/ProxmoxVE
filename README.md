@@ -23,7 +23,7 @@ After installation, credentials are stored in `~/solectrus.creds` inside the con
 
 ## Update
 
-Run the same command again and select "Update" when prompted.
+Log into the LXC container and run `update`. Additionally, [Watchtower](https://watchtower.nickfedor.com/) checks once daily for new Docker images and updates them automatically.
 
 ## Data Sources
 
