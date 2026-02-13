@@ -44,7 +44,7 @@ mkdir -p /etc/docker
 # Use journald for container logs to prevent unbounded disk usage
 echo -e '{\n  "log-driver": "journald"\n}' >/etc/docker/daemon.json
 
-systemctl restart docker
+systemctl restart docker || { msg_error "Failed to restart Docker"; exit 1; }
 msg_ok "Configured Docker"
 
 # -- SOLECTRUS setup -----------------------------------------------------------
