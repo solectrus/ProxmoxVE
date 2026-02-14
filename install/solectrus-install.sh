@@ -82,6 +82,7 @@ sed -i \
   -e "s|^SECRET_KEY_BASE=.*|SECRET_KEY_BASE=${SECRET_KEY_BASE}|" \
   -e "s|^ADMIN_PASSWORD=.*|ADMIN_PASSWORD=${ADMIN_PASSWORD}|" \
   -e "s|^APP_HOST=.*|APP_HOST=${CT_IP}|" \
+  -e "s|^INSTALLATION_DATE=.*|INSTALLATION_DATE=$(date +%Y-%m-%d)|" \
   .env
 
 # Verify that all critical variables were replaced
