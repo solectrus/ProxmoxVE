@@ -6,12 +6,12 @@
   "type": "ct",
   "updateable": true,
   "privileged": false,
-  "interface_port": 3000,
+  "interface_port": 3999,
   "documentation": "https://docs.solectrus.de/",
   "website": "https://solectrus.de/",
   "logo": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/webp/solectrus.webp",
   "config_path": "/opt/solectrus/.env",
-  "description": "SOLECTRUS is a photovoltaic dashboard that visualizes solar energy production, consumption, and battery storage data. It runs as a Docker-based stack with InfluxDB, PostgreSQL, and Redis, providing real-time monitoring and historical analysis of your solar power system.",
+  "description": "SOLECTRUS is a photovoltaic dashboard that visualizes solar energy production, consumption, and battery storage data. This script installs HELIOS, the SOLECTRUS configuration manager, which sets up and manages the full Docker-based stack (Dashboard, InfluxDB, PostgreSQL, Redis, collectors) from its web interface — no Docker or Linux expertise required.",
   "install_methods": [
     {
       "type": "default",
@@ -30,6 +30,10 @@
     "password": null
   },
   "notes": [
+    {
+      "text": "After installation, open the HELIOS web interface at `http://<ip>:3999` to configure and start your SOLECTRUS dashboard and data collectors.",
+      "type": "info"
+    },
     {
       "text": "Credentials are stored in `~/solectrus.creds` inside the container.",
       "type": "info"

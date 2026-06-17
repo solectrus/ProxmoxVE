@@ -3,7 +3,7 @@ source <(curl -fsSL https://raw.githubusercontent.com/solectrus/ProxmoxVE/main/m
 # Copyright (c) 2021-2026 community-scripts ORG
 # Author: ledermann (Georg Ledermann)
 # License: MIT | https://github.com/solectrus/ProxmoxVE/raw/main/LICENSE
-# Source: https://github.com/solectrus/solectrus
+# Source: https://github.com/solectrus
 
 APP="SOLECTRUS"
 var_tags="${var_tags:-smarthome;dashboard}"
@@ -49,6 +49,6 @@ description
 
 msg_ok "Completed successfully!\n"
 echo -e "${CREATING}${GN}${APP} setup has been successfully initialized!${CL}"
-echo -e "${INFO}${YW} Access it using the following URL:${CL}"
-echo -e "${TAB}${GATEWAY}${BGN}http://${IP}:3000${CL}"
+echo -e "${INFO}${YW} Open the HELIOS web interface to configure and start SOLECTRUS:${CL}"
+echo -e "${TAB}${GATEWAY}${BGN}http://${IP}:3999${CL}"
 echo -e "${INFO}${YW} Credentials stored in ${BGN}~/solectrus.creds${CL}${YW} (inside container ${BL}${CTID}${CL}${YW})${CL}"

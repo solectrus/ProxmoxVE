@@ -12,12 +12,9 @@ Run the following command in your **Proxmox VE Shell**:
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/solectrus/ProxmoxVE/main/ct/solectrus.sh)"
 ```
 
-This creates a Debian 13 LXC container with Docker and Docker Compose. During installation, `compose.yaml` and `.env` are fetched from the SOLECTRUS repository. Credentials are generated automatically and the following containers are started:
+This creates a Debian 13 LXC container with Docker and Docker Compose and installs [HELIOS](https://github.com/solectrus/helios), the SOLECTRUS configuration manager. Credentials are generated automatically and HELIOS is started on port `3999`.
 
-- InfluxDB, PostgreSQL, Redis
-- SOLECTRUS Dashboard
-- Power-Splitter
-- Watchtower for automatic container updates
+Open the HELIOS web interface at `http://<ip>:3999` and log in with the generated admin password. From there you configure and start the full SOLECTRUS stack (Dashboard, InfluxDB, PostgreSQL, Redis, collectors, Watchtower) — no Docker or Linux expertise required.
 
 After installation, credentials are stored in `~/solectrus.creds` inside the container.
 
